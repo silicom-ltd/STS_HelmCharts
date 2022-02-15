@@ -3,40 +3,68 @@ EnableGPS: true
 NodeSelectors:
   sts.silicom.com/config: "gm-1"
 Images:
-  Tsyncd: quay.io/silicom/tsyncd:2.1.0.0
+  Tsyncd: quay.io/silicom/tsyncd:2.0.5.0
   Ts2Phcs: quay.io/silicom/ts2phcs:1.0.0
   Phcs2Sys: quay.io/silicom/phcs2sys:3.1.1
-  GrpcTsyncd: quay.io/silicom/grpc-tsyncd:2.1.0.0
+  GrpcTsyncd: quay.io/silicom/grpc-tsyncd:2.0.5.0
   StsPlugin: quay.io/silicom/sts-plugin:0.0.2
   Gpsd: quay.io/silicom/gpsd:3.23.1
 GrpcSvcPort: 50051
 GpsSvcPort: 2947
 Configuration: |
   profileID = 2
-  nicStr1 = enp101s0f0
-  slavePortMask = 0xfff
-  masterPortMask = 0xfff
-  syncePortMask = 0xfff
+  port1 = enp101s0f0
+  port2 = enp101s0f1
+  port3 = enp101s0f2
+  port4 = enp101s0f3
+  port5 = enp101s0f4
+  port6 = enp101s0f5
+  port7 = enp101s0f6
+  port8 = enp101s0f7
+  port9 = enp103s0f0
+  port10 = enp103s0f1
+  port11 = enp103s0f2
+  port12 = enp103s0f3
+  masterPortMask_GM = 0xfff
+  masterPortMask_BC = 0xfff
+  slavePortMask_BC = 0xfff
+  slavePortMask_TSC = 0xfff
   ipv6PortMask = 0xfff
-  IPCServer = 1
-  domainNum = 24
+  domainNum_8275_1 = 24
+  domainNum_8275_2 = 44
+  domainNum_8265_2 = 4
   forwardable = 0
   twoStep = 0
   priority2 = 128
   modePPS = 2
-  srcPPS = 1
   mode10MHz = 2
+  srcPPS = 1
   src10MHz = 1
-  synceRecClkPort = 0
-  phyLedsCtl = 0
   freqCat = 3
-  hoSpecDuration = 3600
+  hoSpecDuration = 14400
+  synceRecClkMode = 2
+  synceRecClkPort = 0
   syncOption = 1
   esmcMode = 2
   ssmMode = 1
-  qlEnable1 = 1
+  syncePortMask_GM = 0xfff
+  syncePortMask_BC = 0xfff
+  syncePortMask_TSC = 0xfff
   ql1 = 4
+  ql2 = 4
+  ql3 = 4
+  ql4 = 4
+  ql5 = 4
+  ql6 = 4
+  ql7 = 4
+  ql8 = 4
+  ql9 = 4
+  ql10 = 4
+  ql11 = 4
+  ql12 = 4
+  synceHoldOff = 500
   synceCpu = 10
+  gpsdDbgLevel = 2 
   gnssSigGpsEn = 1
   gnssSigGpsL1CAEn = 1
   gnssSigGpsL2CEn = 1
@@ -82,17 +110,18 @@ Configuration: |
   gnssLockMode = 1
   gnssLockTh = 100
   gnssClockOutEn = 1
+  IPCServer = 1
   swTimestamp = 0
   inbandMode = 1 
   dumpMode = 0
   getRawTs = 0
-  countDelay = 0
-  dataDelay = 0
-  statDelay = 0
   aprLevel = 0
   traceModule = 23
   traceLevel = 0
   tracePtpMsg = -1
   whenWriteLog = 0
   taccLogEn = 0
+  phyLedsCtl = 0
+  eventMask = 3
   debugAPI = 0
+
