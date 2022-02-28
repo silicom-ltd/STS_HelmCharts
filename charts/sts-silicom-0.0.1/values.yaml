@@ -3,10 +3,10 @@ EnableGPS: true
 NodeSelectors:
   sts.silicom.com/config: "gm-1"
 Images:
-  Tsyncd: quay.io/silicom/tsyncd:2.0.5.0
+  Tsyncd: quay.io/silicom/tsyncd:2.1.0.0
   Ts2Phcs: quay.io/silicom/ts2phcs:1.0.0
   Phcs2Sys: quay.io/silicom/phcs2sys:3.1.1
-  GrpcTsyncd: quay.io/silicom/grpc-tsyncd:2.0.5.0
+  GrpcTsyncd: quay.io/silicom/grpc-tsyncd:2.1.0.0
   StsPlugin: quay.io/silicom/sts-plugin:0.0.2
   Gpsd: quay.io/silicom/gpsd:3.23.1
 GrpcSvcPort: 50051
