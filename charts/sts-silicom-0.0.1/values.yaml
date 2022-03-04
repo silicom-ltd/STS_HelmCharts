@@ -1,5 +1,6 @@
 NodeName: worker2
 EnableGPS: true
+ServiceAccount: sts-tsync
 NodeSelectors:
   sts.silicom.com/config: "gm-1"
 Images:
