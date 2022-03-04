@@ -247,7 +247,7 @@ spec:
             value: "{{.Values.GpsSvcPort}}"
       - image: {{.Values.Images.Gpsd}}
         imagePullPolicy: Always
-        name: {{.Values.NodeName}}-gpsd
+        name: {{.Values.NodeName | replace "." "-" }}-gpsd
         # readinessProbe:
         #   tcpSocket:
         #     port: {{.Values.GpsSvcPort}}
