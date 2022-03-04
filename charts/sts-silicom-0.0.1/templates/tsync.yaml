@@ -81,7 +81,7 @@ spec:
       containers:
       - image: {{.Values.Images.GrpcTsyncd}}
         imagePullPolicy: Always
-        name: {{.Values.NodeName}}-grpc-tsyncd
+        name: {{.Values.NodeName | replace "." "-" }}-grpc-tsyncd
         securityContext:
           privileged: true
           readOnlyRootFilesystem: false
@@ -103,7 +103,7 @@ spec:
           name: {{.ServicePrefix}}-tsyncd
       - image: {{.Values.Images.Tsyncd}}
         imagePullPolicy: Always
-        name: {{.Values.NodeName}}-tsync
+        name: {{.Values.NodeName | replace "." "-" }}-tsync
         env:
           - name: WAIT_FOR_GPS
 {{- if .EnableGPS}}
