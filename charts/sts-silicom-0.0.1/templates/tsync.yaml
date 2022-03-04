@@ -72,10 +72,10 @@ spec:
       nodeSelector:
         kubernetes.io/hostname: {{.Values.NodeName}}
         sts.silicom.com/ice-driver-available: "true"
-{{- range $k, $v := .Values.NodeSelector }}
+{{- range $k, $v := .Values.NodeSelectors }}
         {{ $k }}: "{{ $v }}"
 {{- end }}
-      serviceAccount: sts-tsync
+      serviceAccount: {{ .Values.ServiceAccount }}
       dnsPolicy: ClusterFirstWithHostNet
       hostNetwork: true
       containers:
@@ -157,10 +157,10 @@ spec:
       shareProcessNamespace: true
       nodeSelector:
         kubernetes.io/hostname: {{.Values.NodeName}}
-{{- range $k, $v := .Values.NodeSelector }}
+{{- range $k, $v := .Values.NodeSelectors }}
         {{ $k }}: "{{ $v }}"
 {{- end }}
-      serviceAccount: sts-tsync
+      serviceAccount: {{ .Values.ServiceAccount }}
       dnsPolicy: ClusterFirstWithHostNet
       hostNetwork: true
       containers:
@@ -217,10 +217,10 @@ spec:
       shareProcessNamespace: true
       nodeSelector:
         kubernetes.io/hostname: {{.Values.NodeName}}
-{{- range $k, $v := .Values.NodeSelector }}
+{{- range $k, $v := .Values.NodeSelectors }}
         {{ $k }}: "{{ $v }}"
 {{- end }}
-      serviceAccount: sts-tsync
+      serviceAccount: {{ .Values.ServiceAccount }}
       dnsPolicy: ClusterFirstWithHostNet
       hostNetwork: true
       containers:
