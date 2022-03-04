@@ -21,7 +21,7 @@ metadata:
 spec:
   type: NodePort
   selector:
-    app: {{.Release.Name}}-{{.Values.NodeName}}-gpsd
+    app: {{.Release.Name}}-{{.Values.NodeName | replace "." "-" }}-gpsd
   ports:
     - protocol: TCP
       port: {{.Values.GpsSvcPort}}
@@ -40,7 +40,7 @@ metadata:
 spec:
   type: NodePort
   selector:
-    app: {{.Release.Name}}-{{.Values.NodeName}}-tsync
+    app: {{.Release.Name}}-{{.Values.NodeName | replace " " "-" }}-tsync
   ports:
     - protocol: TCP
       port: {{.Values.GrpcSvcPort}}
@@ -52,25 +52,25 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   labels:
-    app: {{.Release.Name}}-{{.Values.NodeName}}-tsync
-  name: {{.Release.Name}}-{{.Values.NodeName}}-tsync
+    app: {{.Release.Name}}-{{.Values.NodeName | replace "." "-" }}-tsync
+  name: {{.Release.Name}}-{{.Values.NodeName | replace "." "-" }}-tsync
   namespace: {{.Release.Namespace}}
   annotations:
     openshift.io/scc: {{.Release.Name}}
 spec:
   selector:
     matchLabels:
-      app: {{.Release.Name}}-{{.Values.NodeName}}-tsync
+      app: {{.Release.Name}}-{{.Values.NodeName | replace "." "-" }}-tsync
   template:
     metadata:
       annotations:
         scheduler.alpha.kubernetes.io/critical-pod: ""
       labels:
-        app: {{.Release.Name}}-{{.Values.NodeName}}-tsync
+        app: {{.Release.Name}}-{{.Values.NodeName | replace "." "-" }}-tsync
     spec:
       shareProcessNamespace: true
       nodeSelector:
-        kubernetes.io/hostname: {{.Values.NodeName}}
+        kubernetes.io/hostname: {{.Values.NodeName | replace "." "-" }}
         sts.silicom.com/ice-driver-available: "true"
 {{- range $k, $v := .Values.NodeSelectors }}
         {{ $k }}: "{{ $v }}"
@@ -138,25 +138,25 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   labels:
-    app: {{.Release.Name}}-{{.Values.NodeName}}-phc2sys
-  name: {{.Release.Name}}-{{.Values.NodeName}}-phc2sys
+    app: {{.Release.Name}}-{{.Values.NodeName | replace "." "-" }}-phc2sys
+  name: {{.Release.Name}}-{{.Values.NodeName | replace "." "-" }}-phc2sys
   namespace: {{.Release.Namespace}}
   annotations:
     openshift.io/scc: {{.Release.Name}}
 spec:
   selector:
     matchLabels:
-      app: {{.Release.Name}}-{{.Values.NodeName}}-phc2sys
+      app: {{.Release.Name}}-{{.Values.NodeName | replace "." "-" }}-phc2sys
   template:
     metadata:
       annotations:
         scheduler.alpha.kubernetes.io/critical-pod: ""
       labels:
-        app: {{.Release.Name}}-{{.Values.NodeName}}-phc2sys
+        app: {{.Release.Name}}-{{.Values.NodeName | replace "." "-" }}-phc2sys
     spec:
       shareProcessNamespace: true
       nodeSelector:
-        kubernetes.io/hostname: {{.Values.NodeName}}
+        kubernetes.io/hostname: {{.Values.NodeName | replace "." "-" }}
 {{- range $k, $v := .Values.NodeSelectors }}
         {{ $k }}: "{{ $v }}"
 {{- end }}
@@ -165,7 +165,7 @@ spec:
       hostNetwork: true
       containers:
       - image: {{.Values.Images.Phc2sys}}
-        name: {{.Values.NodeName}}-phc2sys
+        name: {{.Values.NodeName | replace "." "-" }}-phc2sys
         imagePullPolicy: Always
         env:
           - name: WAIT_FOR_GPS
@@ -198,25 +198,25 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   labels:
-    app: {{.Release.Name}}-{{.Values.NodeName}}-gpsd
-  name: {{.Release.Name}}-{{.Values.NodeName}}-gpsd
+    app: {{.Release.Name}}-{{.Values.NodeName | replace "." "-" }}-gpsd
+  name: {{.Release.Name}}-{{.Values.NodeName | replace "." "-" }}-gpsd
   namespace: {{.Release.Namespace}}
   annotations:
     openshift.io/scc: {{.Release.Name}}
 spec:
   selector:
     matchLabels:
-      app: {{.Release.Name}}-{{.Values.NodeName}}-gpsd
+      app: {{.Release.Name}}-{{.Values.NodeName | replace "." "-" }}-gpsd
   template:
     metadata:
       annotations:
         scheduler.alpha.kubernetes.io/critical-pod: ""
       labels:
-        app: {{.Release.Name}}-{{.Values.NodeName}}-gpsd
+        app: {{.Release.Name}}-{{.Values.NodeName | replace "." "-" }}-gpsd
     spec:
       shareProcessNamespace: true
       nodeSelector:
-        kubernetes.io/hostname: {{.Values.NodeName}}
+        kubernetes.io/hostname: {{.Values.NodeName | replace "." "-" }}
 {{- range $k, $v := .Values.NodeSelectors }}
         {{ $k }}: "{{ $v }}"
 {{- end }}
@@ -225,7 +225,7 @@ spec:
       hostNetwork: true
       containers:
       - image: {{.Values.Images.TsyncExtts}}
-        name: {{.Values.NodeName}}-tsyncextts
+        name: {{.Values.NodeName | replace "." "-" }}-tsyncextts
         imagePullPolicy: Always
         securityContext:
           privileged: true
