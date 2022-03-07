@@ -125,4 +125,3 @@ Configuration: |
   phyLedsCtl = 0
   eventMask = 3
   debugAPI = 0
-
