@@ -1,0 +1,34 @@
+{{- if .Values.EnableGPS -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "node.gps.name" . }}
+  namespace: {{.Release.Namespace}}
+  labels:
+    sts.silicom.com/svc: gpsd
+spec:
+  type: NodePort
+  selector:
+    app: {{ template "node.gps.name" . }}
+  ports:
+    - protocol: TCP
+      port: {{.Values.GpsSvcPort}}
+      targetPort: {{.Values.GpsSvcPort}}
+
+---
+{{- end -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "node.grpc.name" . }}
+  namespace: {{.Release.Namespace}}
+  labels:
+    sts.silicom.com/svc: tsyncd
+spec:
+  type: NodePort
+  selector:
+    app: {{ template "node.grpc.name" . }}
+  ports:
+    - protocol: TCP
+      port: {{.Values.GrpcSvcPort}}
+      targetPort: {{.Values.GrpcSvcPort}}

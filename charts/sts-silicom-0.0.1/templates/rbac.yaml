@@ -1,8 +1,9 @@
+{{- if .Values.InstallRbac}}
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: {{.Values.ServiceAccount}}
-  namespace: "{{ .Release.Namespace }}"
+  namespace: {{.Release.Namespace}}
 
 ---
 
@@ -10,7 +11,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: {{.Values.ServiceAccount}}
-  namespace: "{{ .Release.Namespace }}"
+  namespace: {{.Release.Namespace}}
 rules:
 - apiGroups:
   - security.openshift.io
@@ -27,7 +28,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: {{.Values.ServiceAccount}}
-  namespace: "{{ .Release.Namespace }}"
+  namespace: {{.Release.Namespace}}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -35,6 +36,5 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: {{.Values.ServiceAccount}}
-  namespace: "{{ .Release.Namespace }}"
-#userNames:
-#- system:serviceaccount:{{ .Release.Namespace }}:tsync
+  namespace: {{.Release.Namespace}}
+{{end}}
