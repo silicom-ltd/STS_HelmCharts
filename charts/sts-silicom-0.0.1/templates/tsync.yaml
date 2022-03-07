@@ -14,7 +14,7 @@ data:
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{.ServicePrefix}}-gpsd
+  name: {{.Values.NodeName | replace "." "-" }}-gpsd
   namespace: {{.Release.Namespace}}
   labels:
     sts.silicom.com/svc: gpsd
@@ -33,7 +33,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{.ServicePrefix}}-tsyncd
+  name: {{.Values.NodeName | replace "." "-" }}-tsyncd
   namespace: {{.Release.Namespace}}
   labels:
     sts.silicom.com/svc: tsyncd
@@ -100,7 +100,7 @@ spec:
         #   periodSeconds: 60
         ports:
         - containerPort: {{.Values.GrpcSvcPort}}
-          name: {{.ServicePrefix}}-tsyncd
+          name: {{.Values.NodeName | replace "." "-" }}-tsyncd
       - image: {{.Values.Images.Tsyncd}}
         imagePullPolicy: Always
         name: {{.Values.NodeName | replace "." "-" }}-tsync
@@ -260,7 +260,7 @@ spec:
         #   periodSeconds: 30
         ports:
         - containerPort: {{.Values.GpsSvcPort}}
-          name: {{.ServicePrefix}}-gpsd
+          name: {{.Values.NodeName | replace "." "-" }}-gpsd
         env:
           - name: GPS_SVC_PORT
             value: "{{.Values.GpsSvcPort}}"
