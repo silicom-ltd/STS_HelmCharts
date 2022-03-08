@@ -91,7 +91,7 @@ spec:
       dnsPolicy: ClusterFirstWithHostNet
       hostNetwork: true
       containers:
-      - image: {{.Values.Images.Phc2sys}}
+      - image: {{.Values.Images.Phc2Sys}}
         name: {{ template "node.phc2sys.name" . }}
         imagePullPolicy: Always
         env:
