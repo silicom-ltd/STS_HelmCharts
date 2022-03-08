@@ -11,8 +11,6 @@ spec:
       app: {{ template "node.tsync.name" . }}
   template:
     metadata:
-      annotations:
-        scheduler.alpha.kubernetes.io/critical-pod: ""
       labels:
         app: {{ template "node.tsync.name" . }}
     spec:
@@ -80,8 +78,6 @@ spec:
       app: {{ template "node.phc2sys.name" . }}
   template:
     metadata:
-      annotations:
-        scheduler.alpha.kubernetes.io/critical-pod: ""
       labels:
         app: {{ template "node.phc2sys.name" . }}
     spec:
@@ -134,8 +130,6 @@ spec:
       app: {{ template "node.gps.name" . }}
   template:
     metadata:
-      annotations:
-        scheduler.alpha.kubernetes.io/critical-pod: ""
       labels:
         app: {{ template "node.gps.name" . }}
     spec:
