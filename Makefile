@@ -20,6 +20,9 @@ helm:
 test:
 	$(HELM) install --debug --dry-run sts-silicom-test --namespace sts-silicom charts/$(PACKAGE_NAME)-0.0.1
 
+install:
+	$(HELM) install --debug sts-silicom-test --namespace sts-silicom charts/$(PACKAGE_NAME)-0.0.1
+
 chart: package
 	-rm charts/cm/*.tgz
 	mv $(PACKAGE_NAME)-0.0.1.tgz charts/cm/
