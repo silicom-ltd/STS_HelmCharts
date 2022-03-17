@@ -20,7 +20,7 @@ spec:
 {{- range $k, $v := .Values.NodeSelectors }}
         {{ $k }}: "{{ $v }}"
 {{- end }}
-      serviceAccount: {{ .Values.ServiceAccount }}
+#      serviceAccount: {{ .Values.ServiceAccount }}
       dnsPolicy: ClusterFirstWithHostNet
       hostNetwork: true
       containers:
@@ -49,19 +49,19 @@ spec:
         volumeMounts:
           - name: devfs
             mountPath: /dev
-          - name: {{.Release.Name}}-tsync-conf
+          - name: {{printf "%.*s-cfg" 11 .Release.Name | quote}}
             mountPath: /etc/tsyncd/tsyncd.conf
             subPath: tsyncd.conf
         securityContext:
           privileged: true
       volumes:
-        - name: devfs
-          hostPath:
-            path: /dev
-        - name: {{.Release.Name}}-tsync-conf
-          configMap:
-            defaultMode: 0777
-            name: {{.Release.Name}}-tsync-conf
+      - name: devfs
+        hostPath:
+          path: /dev
+      - name: {{printf "%.*s-cfg" 11 .Release.Name | quote}}
+        configMap:
+          defaultMode: 0777
+          name: {{printf "%.*s-cfg" 11 .Release.Name | quote}}
 
 ---
 
@@ -87,7 +87,7 @@ spec:
 {{- range $k, $v := .Values.NodeSelectors}}
         {{ $k }}: {{ $v | quote -}}
 {{- end}}
-      serviceAccount: {{ .Values.ServiceAccount }}
+#      serviceAccount: {{ .Values.ServiceAccount }}
       dnsPolicy: ClusterFirstWithHostNet
       hostNetwork: true
       containers:
@@ -135,31 +135,28 @@ spec:
     spec:
       shareProcessNamespace: true
       nodeSelector:
-        kubernetes.io/hostname: {{ template "node.name" . }}
 {{- range $k, $v := .Values.NodeSelectors }}
         {{ $k }}: "{{ $v }}"
 {{- end }}
-      serviceAccount: {{ .Values.ServiceAccount }}
+#      serviceAccount: {{ .Values.ServiceAccount }}
       dnsPolicy: ClusterFirstWithHostNet
       hostNetwork: true
       containers:
       - image: {{.Values.Images.TsyncExtts}}
         name: {{ template "node.tsync_extts.name" . }}
         imagePullPolicy: Always
-        securityContext:
-          privileged: true
         volumeMounts:
-          - name: devfs
-            mountPath: /dev
+        - name: devfs
+          mountPath: /dev
         env:
-          - name: WAIT_FOR_GPS
-            value: {{.Values.EnableGPS | quote}}
-{{- if eq .ProfileId 2}}
-          - name: GM_MODE
-            value: "-g"
-{{end}}
-          - name: GPS_SVC_PORT
-            value: {{.Values.GpsSvcPort | quote}}
+        - name: WAIT_FOR_GPS
+          value: {{.Values.EnableGPS | quote}}
+{{- if eq .Values.ProfileId "2"}}
+        - name: GM_MODE
+          value: "-g"
+{{- end}}
+        - name: GPS_SVC_PORT
+          value: {{.Values.GpsSvcPort | quote}}
       - image: {{.Values.Images.Gpsd}}
         imagePullPolicy: Always
         name: {{ template "node.gps.name" . }}

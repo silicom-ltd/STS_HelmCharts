@@ -1,7 +1,7 @@
 # This is used to uniquely label the services according to the node they are running on
 NodeName: worker2
 EnableGPS: true
-ProfileId: 2
+ProfileId: "2"
 
 # These are related to the rbac.yaml permissions file. The user may want to install their own
 # service account and bindings, etc. The service account is named here, and the InstallRbac

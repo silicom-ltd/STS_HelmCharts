@@ -18,7 +18,7 @@ helm:
 	chmod +x bin/linux-amd64/helm
 
 test:
-	$(HELM) install --debug --dry-run sts-silicom-test --namespace sts-silicom charts/$(PACKAGE_NAME)-0.0.1
+	$(HELM) install --debug --dry-run sts-silicom-test --namespace sts-silicom charts/$(PACKAGE_NAME)-0.0.1 | tee output.yaml
 
 install:
 	$(HELM) install --debug sts-silicom-test --namespace sts-silicom charts/$(PACKAGE_NAME)-0.0.1
