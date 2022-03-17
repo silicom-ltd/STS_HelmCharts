@@ -23,6 +23,9 @@ test:
 install:
 	$(HELM) install --debug sts-silicom-test --namespace sts-silicom charts/$(PACKAGE_NAME)-0.0.1
 
+uninstall:
+	$(HELM) uninstall --debug sts-silicom-test --namespace sts-silicom
+
 chart: package
 	-rm charts/cm/*.tgz
 	mv $(PACKAGE_NAME)-0.0.1.tgz charts/cm/

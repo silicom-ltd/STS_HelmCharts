@@ -16,7 +16,6 @@ spec:
     spec:
       shareProcessNamespace: true
       nodeSelector:
-        kubernetes.io/hostname: {{ template "node.name" . }}
 {{- range $k, $v := .Values.NodeSelectors }}
         {{ $k }}: "{{ $v }}"
 {{- end }}
@@ -27,12 +26,6 @@ spec:
       - image: {{ .Values.Images.GrpcTsyncd }}
         imagePullPolicy: Always
         name: {{template "node.grpc.name" . }}
-        securityContext:
-          privileged: true
-          readOnlyRootFilesystem: false
-          capabilities:
-            add:
-            - CAP_SYS_ADMIN
         ports:
         - containerPort: {{.Values.GrpcSvcPort}}
           name: {{template "node.grpc.name" . }}
@@ -83,7 +76,6 @@ spec:
     spec:
       shareProcessNamespace: true
       nodeSelector:
-        kubernetes.io/hostname: {{ template "node.name" . }}
 {{- range $k, $v := .Values.NodeSelectors}}
         {{ $k }}: {{ $v | quote -}}
 {{- end}}
@@ -95,13 +87,13 @@ spec:
         name: {{ template "node.phc2sys.name" . }}
         imagePullPolicy: Always
         env:
-          - name: WAIT_FOR_GPS
-            value: {{.Values.EnableGPS | quote}}
-          - name: GPS_SVC_PORT
-            value: {{.Values.GpsSvcPort | quote}}
+        - name: WAIT_FOR_GPS
+          value: {{.Values.EnableGPS | quote}}
+        - name: GPS_SVC_PORT
+          value: {{.Values.GpsSvcPort | quote}}
         volumeMounts:
-          - name: devfs
-            mountPath: /dev
+        - name: devfs
+          mountPath: /dev
         securityContext:
           privileged: true
           readOnlyRootFilesystem: false
@@ -109,9 +101,9 @@ spec:
             add:
             - CAP_SYS_TIME
       volumes:
-        - name: devfs
-          hostPath:
-            path: /dev
+      - name: devfs
+        hostPath:
+          path: /dev
 
 {{- if .Values.EnableGPS }}
 
@@ -157,6 +149,8 @@ spec:
 {{- end}}
         - name: GPS_SVC_PORT
           value: {{.Values.GpsSvcPort | quote}}
+        securityContext:
+          privileged: true
       - image: {{.Values.Images.Gpsd}}
         imagePullPolicy: Always
         name: {{ template "node.gps.name" . }}
@@ -164,18 +158,15 @@ spec:
         - containerPort: {{.Values.GpsSvcPort}}
           name: {{ template "node.gps.name" . }}
         env:
-          - name: GPS_SVC_PORT
-            value: {{.Values.GpsSvcPort | quote}}
+        - name: GPS_SVC_PORT
+          value: {{.Values.GpsSvcPort | quote}}
         volumeMounts:
-          - name: devfs
-            mountPath: /dev
+        - name: devfs
+          mountPath: /dev
         securityContext:
           privileged: true
-          readOnlyRootFilesystem: false
-          seLinuxOptions:
-            level: "s0"
       volumes:
-        - name: devfs
-          hostPath:
-            path: /dev
+      - name: devfs
+        hostPath:
+          path: /dev
 {{- end}}

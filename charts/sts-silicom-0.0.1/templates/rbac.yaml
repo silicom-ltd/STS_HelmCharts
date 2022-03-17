@@ -1,4 +1,30 @@
 {{- if .Values.InstallRbac}}
+# Source: sts-silicom/templates/rbac.yaml
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  name: {{.Values.ServiceAccount}}
+  annotations:
+    seccomp.security.alpha.kubernetes.io/allowedProfileNames: '*'
+spec:
+  privileged: true
+  hostNetwork: true
+  allowedCapabilities:
+  - '*'
+  seLinux:
+    rule: RunAsAny
+  supplementalGroups:
+    rule: RunAsAny
+  runAsUser:
+    rule: RunAsAny
+  fsGroup:
+    rule: RunAsAny
+  volumes:
+  - '*'
+
+---
+
+# Source: sts-silicom/templates/rbac.yaml
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -7,6 +33,7 @@ metadata:
 
 ---
 
+# Source: sts-silicom/templates/rbac.yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
@@ -14,16 +41,17 @@ metadata:
   namespace: {{.Release.Namespace}}
 rules:
 - apiGroups:
-  - security.openshift.io
+  - policy
   resources:
-  - securitycontextconstraints
+  - podsecuritypolicies
   verbs:
   - use
   resourceNames:
-  - privileged
+  - {{.Values.ServiceAccount}}
 
 ---
 
+# Source: sts-silicom/templates/rbac.yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:

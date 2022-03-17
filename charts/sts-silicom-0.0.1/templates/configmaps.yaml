@@ -4,5 +4,5 @@ metadata:
   name: {{printf "%.*s-cfg" 11 .Release.Name | quote}}
   namespace: {{.Release.Namespace}}
 data:
-  tsyncd.conf: |-
-    {{ .Files.Get "tsyncd.conf" | quote }}
+  tsyncd.conf: |
+    {{- .Files.Get "tsyncd.conf" | nindent 4 -}}

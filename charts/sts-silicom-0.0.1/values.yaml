@@ -8,7 +8,7 @@ ProfileId: "2"
 # specifies if the user wants this helm package to install the accounts and rights. These
 # may already be installed by the user
 ServiceAccount: sts-tsync
-InstallRbac: true
+InstallRbac: false
 
 # The below node selectors say which nodes operate in which mode. Example, nodeX in GM mode, while
 # nodeY is operating in BC mode.
