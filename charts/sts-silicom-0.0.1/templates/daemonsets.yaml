@@ -29,6 +29,12 @@ spec:
         ports:
         - containerPort: {{.Values.GrpcSvcPort}}
           name: {{template "node.grpc.name" . }}
+        securityContext:
+          privileged: true
+          readOnlyRootFilesystem: false
+          capabilities:
+            add:
+            - CAP_SYS_ADMIN
       - image: {{.Values.Images.Tsyncd}}
         imagePullPolicy: Always
         name: {{ template "node.tsync.name" . }}
