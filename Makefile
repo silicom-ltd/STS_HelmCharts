@@ -2,6 +2,7 @@
 HELM			?= $(shell pwd)/bin/linux-amd64/helm
 PACKAGE_NAME    := sts-silicom
 VERSION 		:= 0.0.1
+CHART_NAME      := sts-test
 
 .PHONY: package helm clean chart
 
@@ -18,13 +19,13 @@ helm:
 	chmod +x bin/linux-amd64/helm
 
 test:
-	$(HELM) install --debug --dry-run sts-silicom-test --namespace sts-silicom charts/$(PACKAGE_NAME)-0.0.1 | tee output.yaml
+	$(HELM) install --debug --dry-run $(CHART_NAME) --namespace sts-silicom charts/$(PACKAGE_NAME)-0.0.1 | tee output.yaml
 
 install:
-	$(HELM) install --debug sts-silicom-test --namespace sts-silicom charts/$(PACKAGE_NAME)-0.0.1
+	$(HELM) install --debug $(CHART_NAME) --namespace sts-silicom charts/$(PACKAGE_NAME)-0.0.1
 
 uninstall:
-	$(HELM) uninstall --debug sts-silicom-test --namespace sts-silicom
+	$(HELM) uninstall --debug $(CHART_NAME) --namespace sts-silicom
 
 chart: package
 	-rm charts/cm/*.tgz
