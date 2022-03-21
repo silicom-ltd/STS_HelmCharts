@@ -8,9 +8,6 @@ CHART_NAME      := sts-test
 
 all: package chart
 
-package:
-	cd charts/$(PACKAGE_NAME)-0.0.1 && $(HELM) package . -d $(shell pwd)
-
 helm:
 	-rm -rf bin
 	mkdir -p bin
@@ -27,10 +24,9 @@ install:
 uninstall:
 	$(HELM) uninstall --debug $(CHART_NAME) --namespace sts-silicom
 
-chart: package
-	-rm charts/cm/*.tgz
-	mv $(PACKAGE_NAME)-0.0.1.tgz charts/cm/
-	cd charts && $(HELM) repo index cm --url=http://sts-silicom-tsync:3000
+chart:
+	cd charts/$(PACKAGE_NAME)-0.0.1 && $(HELM) package . -d $(shell pwd)
+	$(HELM) repo index .
 
 charts-image:
 	docker build . -f docker/Dockerfile -t quay.io/silicom/sts-silicom-tsync:$(ICE_VERSION)
