@@ -146,7 +146,7 @@ spec:
         env:
         - name: WAIT_FOR_GPS
           value: {{.Values.EnableGPS | quote}}
-{{- if (.Files.Get "tsyncd.conf" | regexMatch "profileID.*=.*2") }}
+{{- if (.Files.Get .Values.TsyncdConfig | regexMatch "profileID.*=.*2") }}
         - name: GM_MODE
           value: "-g"
 {{- end}}

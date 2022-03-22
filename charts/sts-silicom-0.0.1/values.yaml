@@ -7,6 +7,7 @@ EnableGPS: true
 # may already be installed by the user
 ServiceAccount: silicom
 InstallRbac: false
+TsyncdConfig: tsyncd.conf
 
 # The below node selectors say which nodes operate in which mode. Example, nodeX in GM mode, while
 # nodeY is operating in BC mode.

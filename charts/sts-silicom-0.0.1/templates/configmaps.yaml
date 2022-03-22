@@ -5,4 +5,4 @@ metadata:
   namespace: {{.Release.Namespace}}
 data:
   tsyncd.conf: |
-    {{- .Files.Get "tsyncd.conf" | nindent 4 -}}
+    {{- .Files.Get .Values.TsyncdConfig | nindent 4 -}}
