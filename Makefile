@@ -16,10 +16,10 @@ helm:
 	chmod +x bin/linux-amd64/helm
 
 test:
-	$(HELM) install --debug --dry-run $(CHART_NAME) --namespace sts-silicom charts/$(PACKAGE_NAME)-0.0.1 | tee output.yaml
+	$(HELM) install --debug --dry-run $(CHART_NAME) --create-namespace --namespace sts-silicom charts/$(PACKAGE_NAME)-0.0.1 | tee output.yaml
 
 install:
-	$(HELM) install --debug $(CHART_NAME) --namespace sts-silicom charts/$(PACKAGE_NAME)-0.0.1
+	$(HELM) install --debug $(CHART_NAME) --create-namespace --namespace sts-silicom charts/$(PACKAGE_NAME)-0.0.1
 
 uninstall:
 	$(HELM) uninstall --debug $(CHART_NAME) --namespace sts-silicom

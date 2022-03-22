@@ -30,10 +30,10 @@ Should the gpsd be enabled?
 
 ```EnableGPS: true```
 
-#### Tsyncd profile id (refer to documentation)
-```ProfileId: "2"```
-
 ### charts/sts-silicom-0.0.1/tsyncd.conf
+
+#### Tsyncd profile id (refer to documentation)
+```profileID = 2```
 
 #### Machine specific ethernet port names
 
