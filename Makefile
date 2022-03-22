@@ -27,6 +27,9 @@ uninstall:
 chart:
 	cd charts/$(PACKAGE_NAME)-0.0.1 && $(HELM) package . -d $(shell pwd)
 	$(HELM) repo index .
+	- mkdir -p output/
+	mv sts-silicom-0.0.1.tgz output/
+	mv index.yaml output/
 
 charts-image:
 	docker build . -f docker/Dockerfile -t quay.io/silicom/sts-silicom-tsync:$(ICE_VERSION)
