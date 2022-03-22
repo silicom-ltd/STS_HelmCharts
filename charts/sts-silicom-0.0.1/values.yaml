@@ -1,19 +1,19 @@
 # This is used to uniquely label the services according to the node they are running on
 NodeName: worker2
 EnableGPS: true
-ProfileId: "2"
+ProfileId: 2
 
 # These are related to the rbac.yaml permissions file. The user may want to install their own
 # service account and bindings, etc. The service account is named here, and the InstallRbac
 # specifies if the user wants this helm package to install the accounts and rights. These
 # may already be installed by the user
-ServiceAccount: sts-tsync
+ServiceAccount: silicom
 InstallRbac: false
 
 # The below node selectors say which nodes operate in which mode. Example, nodeX in GM mode, while
 # nodeY is operating in BC mode.
 NodeSelectors:
-  sts.silicom.com/config: "gm-1"
+  sts.silicom.com/present: "true"
 Images:
   Tsyncd: quay.io/silicom/tsyncd:2.1.0.0
   TsyncExtts: quay.io/silicom/tsync_extts:1.0.0
@@ -23,4 +23,3 @@ Images:
   Gpsd: quay.io/silicom/gpsd:3.23.1
 GrpcSvcPort: 50051
 GpsSvcPort: 2947
- 

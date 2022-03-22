@@ -149,7 +149,7 @@ spec:
         env:
         - name: WAIT_FOR_GPS
           value: {{.Values.EnableGPS | quote}}
-{{- if eq .Values.ProfileId "2"}}
+{{- if eq (.Values.ProfileId | int) 2}}
         - name: GM_MODE
           value: "-g"
 {{- end}}
