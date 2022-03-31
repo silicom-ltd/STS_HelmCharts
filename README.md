@@ -2,7 +2,13 @@ The tsyncd default values are in charts/sts-silicom-0.0.1/values.yaml
 
 ## Files to change
 
+Please refer to https://helm.sh/docs/chart_template_guide/values_files/ on how to override the default values of the chart(s).
+
+### cfgs/bc.yaml, cfgs/gm.yaml, cfgs/slave.yaml
+These 3 files  
+
 ### charts/sts-silicom-0.0.1/values.yaml
+Default values that can be overwritten using `helm install --set` or a file with the same format `helm install -f args.yaml`
 
 #### nodeSelector
 
@@ -30,22 +36,10 @@ Should the gpsd be enabled?
 
 ```EnableGPS: true```
 
-### charts/sts-silicom-0.0.1/tsyncd.conf
-
-#### Tsyncd profile id (refer to documentation)
-```profileID = 2```
-
-#### Machine specific ethernet port names
-
-```
-port1 = eth0
-port2 = eth1
-portN = ethN
-```
 
 ## Makefile recipes
 
-There are 2 recipes in the Makefile to deploy the charts.
+There are various recipes in the Makefile to deploy the charts.
 
 ### Install charts
 
@@ -65,3 +59,17 @@ There are 2 recipes in the Makefile to deploy the charts.
 
 `helm install --debug sts-test --namespace sts-silicom charts/sts-silicom-0.0.1`
 
+### Deploy Master clock mode
+This will override some of the values.yaml file values.
+
+`helm install --set Spec.twoStep=0 -f cfgs/gm.yaml --debug sts-test --namespace sts-silicom charts/sts-silicom-0.0.1`
+
+### Deploy Boundary clock mode
+This will override some of the values.yaml file values.
+
+`helm install --set Spec.twoStep=1 -f cfgs/bc.yaml --debug sts-test --namespace sts-silicom charts/sts-silicom-0.0.1`
+
+### Deploy Slave clock mode
+This will override some of the values.yaml file values.
+
+`helm install --set Spec.gpsdDbgLevel=8  -f cfgs/slave.yaml --debug sts-test --namespace sts-silicom charts/sts-silicom-0.0.1`

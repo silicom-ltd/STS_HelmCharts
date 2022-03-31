@@ -11,12 +11,18 @@ all: package chart
 helm:
 	-rm -rf bin
 	mkdir -p bin
-	curl -sL https://get.helm.sh/helm-v3.8.0-linux-amd64.tar.gz -o bin/helm.tar.gz
+	curl -sL https://get.helm.sh/helm-v3.8.1-linux-amd64.tar.gz -o bin/helm.tar.gz
 	tar xvf bin/helm.tar.gz -C bin
 	chmod +x bin/linux-amd64/helm
 
 test:
 	$(HELM) install --debug --dry-run $(CHART_NAME) --create-namespace --namespace sts-silicom charts/$(PACKAGE_NAME)-0.0.1 | tee output.yaml
+
+test-bc:
+	$(HELM) install --set Spec.profileID=3 --debug --dry-run $(CHART_NAME) --create-namespace --namespace sts-silicom charts/$(PACKAGE_NAME)-0.0.1 | tee output.yaml
+
+test-slave:
+	$(HELM) install --set Spec.profileID=4 --debug --dry-run $(CHART_NAME) --create-namespace --namespace sts-silicom charts/$(PACKAGE_NAME)-0.0.1 | tee output.yaml
 
 install:
 	$(HELM) install --debug $(CHART_NAME) --create-namespace --namespace sts-silicom charts/$(PACKAGE_NAME)-0.0.1

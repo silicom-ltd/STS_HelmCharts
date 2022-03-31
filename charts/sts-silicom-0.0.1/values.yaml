@@ -7,12 +7,7 @@ EnableGPS: true
 # may already be installed by the user
 ServiceAccount: silicom
 InstallRbac: false
-TsyncdConfig: tsyncd.conf
 
-# The below node selectors say which nodes operate in which mode. Example, nodeX in GM mode, while
-# nodeY is operating in BC mode.
-NodeSelectors:
-  sts.silicom.com/present: "true"
 Images:
   Tsyncd: quay.io/silicom/tsyncd:2.1.0.0
   TsyncExtts: quay.io/silicom/tsync_extts:1.0.0
@@ -22,3 +17,98 @@ Images:
   Gpsd: quay.io/silicom/gpsd:3.23.1
 GrpcSvcPort: 50051
 GpsSvcPort: 2947
+
+Spec:
+  profileID: 2
+  ports:
+  - ethName: enp101s0f0
+    ql: 4
+  - ethName: enp101s0f1
+    ql: 4
+  masterPortMask_GM: 0xfff
+  masterPortMask_BC: 0xfff
+  slavePortMask_BC: 0xfff
+  slavePortMask_TSC: 0xfff
+  ipv6PortMask: 0xfff
+  domainNum_8275_1: 24
+  domainNum_8275_2: 44
+  domainNum_8265_2: 4
+  forwardable: 0
+  twoStep: 0
+  priority2: 128
+  modePPS: 2
+  mode10MHz: 2
+  srcPPS: 1
+  src10MHz: 1
+  freqCat: 3
+  hoSpecDuration: 14400
+  synceRecClkMode: 2
+  synceRecClkPort: 0
+  syncOption: 1
+  esmcMode: 2
+  ssmMode: 1
+  syncePortMask_GM: 0xfff
+  syncePortMask_BC: 0xfff
+  syncePortMask_TSC: 0xfff
+  synceHoldOff: 500
+  synceCpu: 10
+  gpsdDbgLevel: 2 
+  gnssSigGpsEn: 1
+  gnssSigGpsL1CAEn: 1
+  gnssSigGpsL2CEn: 1
+  gnssSigSBASEn: 1
+  gnssSigSBASL1CAEn: 0
+  gnssSigGalEn: 1
+  gnssSigGalE1En: 1
+  gnssSigGalE5BEn: 1
+  gnssSigBDSEn: 1
+  gnssSigBDSB1En: 1
+  gnssSigBDSB2En: 1
+  gnssSigQZSSEn: 1
+  gnssSigQZSSL1CAEn: 1
+  gnssSigQZSSL1SEn: 0
+  gnssSigQZSSL2CEn: 1
+  gnssSigGLOEn: 1
+  gnssSigGLOL1En: 1
+  gnssSigGLOL2En: 1
+  gnssCableDelay: 50
+  gnssPulseDef: 1
+  gnssPulseLenDef: 0
+  gnssTP1En: 1
+  gnssFreqTP1: 1
+  gnssFreqLockTP1: 1
+  gnssUseLockTP1: 1
+  gnssDutyTP1: 0
+  gnssDutyLockTP1: 10
+  gnssTP2En: 1
+  gnssFreqTP2: 10000000
+  gnssFreqLockTP2: 10000000
+  gnssUseLockTP2: 1
+  gnssDutyTP2: 0
+  gnssDutyLockTP2: 50
+  gnssMinElev: 5
+  gnssMinSatSig: 9
+  gnssMsgNmeaUsb: 7
+  gnssMsgUbxUsb: 0
+  gnssIntfDetect: 1
+  gnssAntSet: 2
+  gnssRecvTMode: 1
+  gnssSvinMinDur: 120
+  gnssSvinAccLimit: 100000
+  gnssLockMode: 1
+  gnssLockTh: 100
+  gnssClockOutEn: 1
+  IPCServer: 1
+  swTimestamp: 0
+  inbandMode: 1 
+  dumpMode: 0
+  getRawTs: 0
+  aprLevel: 0
+  traceModule: 23
+  traceLevel: 0
+  tracePtpMsg: -1
+  whenWriteLog: 0
+  taccLogEn: 0
+  phyLedsCtl: 0
+  eventMask: 3
+  debugAPI: 0
