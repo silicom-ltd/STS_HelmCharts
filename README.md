@@ -1,5 +1,32 @@
 The tsyncd default values are in charts/sts-silicom-0.0.1/values.yaml
 
+## Add helm repository from github.io
+
+https://helm.sh/docs/intro/quickstart/
+
+`helm repo add sts-charts https://silicom-ltd.github.io/STS_HelmCharts/`
+
+`helm search repo sts-charts`
+```
+NAME                    CHART VERSION   APP VERSION     DESCRIPTION
+sts-charts/sts-silicom  0.0.1           1.0.0           Silicom STS PTP tsync deployment
+```
+
+`helm repo update`
+```
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "sts-charts" chart repository```
+
+`helm search repo sts-charts`
+```
+NAME                    CHART VERSION   APP VERSION     DESCRIPTION                     
+sts-charts/sts-silicom  0.0.1           1.0.0           Silicom STS PTP tsync deployment
+```
+
+`helm install --debug gm1 --set Spec.twoStep=1 -f cfgs/gm.yaml --namespace sts-silicom sts-charts/sts-silicom`
+
+`helm install --debug bc --set Spec.twoStep=0 -f cfgs/bc.yaml --namespace sts-silicom sts-charts/sts-silicom`
+
 ## Files to change
 
 Please refer to https://helm.sh/docs/chart_template_guide/values_files/ on how to override the default values of the chart(s).
