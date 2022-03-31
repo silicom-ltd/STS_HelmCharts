@@ -1,4 +1,4 @@
-The tsyncd default values are in charts/sts-silicom-0.0.1/values.yaml
+NOTES: The tsyncd default values are in charts/sts-silicom-0.0.1/values.yaml
 
 ## Add helm repository from github.io
 
@@ -7,6 +7,7 @@ https://helm.sh/docs/intro/quickstart/
 `helm repo add sts-charts https://silicom-ltd.github.io/STS_HelmCharts/`
 
 `helm search repo sts-charts`
+
 ```
 NAME                    CHART VERSION   APP VERSION     DESCRIPTION
 sts-charts/sts-silicom  0.0.1           1.0.0           Silicom STS PTP tsync deployment
@@ -15,9 +16,11 @@ sts-charts/sts-silicom  0.0.1           1.0.0           Silicom STS PTP tsync de
 `helm repo update`
 ```
 Hang tight while we grab the latest from your chart repositories...
-...Successfully got an update from the "sts-charts" chart repository```
+...Successfully got an update from the "sts-charts" chart repository
+```
 
 `helm search repo sts-charts`
+
 ```
 NAME                    CHART VERSION   APP VERSION     DESCRIPTION                     
 sts-charts/sts-silicom  0.0.1           1.0.0           Silicom STS PTP tsync deployment
