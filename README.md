@@ -75,7 +75,7 @@ There are various recipes in the Makefile to deploy the charts.
 
 `make install`
 
-`helm uninstall --debug sts-test --namespace sts-silicom`
+`helm install --debug sts-test --namespace sts-silicom`
 
 ## Uninstall charts
 
@@ -87,7 +87,7 @@ There are various recipes in the Makefile to deploy the charts.
 
 `make test`
 
-`helm install --debug sts-test --namespace sts-silicom charts/sts-silicom-0.0.1`
+`helm install --debug sts-test --dry-run --namespace sts-silicom charts/sts-silicom-0.0.1`
 
 ### Deploy Master clock mode
 This will override some of the values.yaml file values.
@@ -102,4 +102,4 @@ This will override some of the values.yaml file values.
 ### Deploy Slave clock mode
 This will override some of the values.yaml file values.
 
-`helm install --set Spec.gpsdDbgLevel=8  -f cfgs/slave.yaml --debug sts-test --namespace sts-silicom charts/sts-silicom-0.0.1`
+`helm install --set Spec.gpsdDbgLevel=8 -f cfgs/slave.yaml --debug sts-test --namespace sts-silicom charts/sts-silicom-0.0.1`
