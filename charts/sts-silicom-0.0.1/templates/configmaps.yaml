@@ -7,8 +7,8 @@ data:
   tsyncd.conf: |
     profileID = {{.Values.Spec.profileID}}
 {{- range $i, $dev := .Values.Spec.ports }}
-    port{{add $i 1}} = {{$dev.ethName}}
-    ql{{add $i 1}} = {{$dev.ql}}
+    port{{$dev.ethPort}} = {{$dev.ethName}}
+    ql{{$dev.ethPort}} = {{$dev.ql}}
 {{- end}}
     synceHoldOff = {{.Values.Spec.synceHoldOff}}
 {{- if or (eq (.Values.Spec.profileID | int) 2) (eq (.Values.Spec.profileID | int) 5) }}

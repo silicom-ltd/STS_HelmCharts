@@ -23,8 +23,10 @@ Spec:
   ports:
   - ethName: enp101s0f0
     ql: 4
+    ethPort: 1
   - ethName: enp101s0f1
     ql: 4
+    ethPort: 2
   masterPortMask_GM: 0xfff
   masterPortMask_BC: 0xfff
   slavePortMask_BC: 0xfff
