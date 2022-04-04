@@ -55,6 +55,7 @@ data:
     ssmMode = {{.Values.Spec.ssmMode}}
     whenWriteLog = {{.Values.Spec.whenWriteLog}}
     debugAPI = {{.Values.Spec.debugAPI}}
+    IPCServer = {{.Values.Spec.IPCServer}}
     gnssSigGpsEn = {{.Values.Spec.gnssSigGpsEn}}
     gnssSigGpsL1CAEn = {{.Values.Spec.gnssSigGpsL1CAEn}}
     gnssSigGpsL2CEn = {{.Values.Spec.gnssSigGpsL2CEn}}
