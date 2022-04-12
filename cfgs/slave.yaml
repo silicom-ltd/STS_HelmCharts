@@ -1,4 +1,4 @@
 NodeSelectors:
   kubenetes.io/hostname: "slave"
 Spec:
-  profileID: 2
+  profileID: 3
