@@ -1,4 +1,4 @@
 NodeSelectors:
   kubenetes.io/hostname: "boundaryclock"
 Spec:
-  profileID: 3
+  profileID: 1
