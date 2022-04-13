@@ -25,17 +25,96 @@ Hang tight while we grab the latest from your chart repositories...
 NAME                    CHART VERSION   APP VERSION     DESCRIPTION                     
 sts-charts/sts-silicom  0.0.1           1.0.0           Silicom STS PTP tsync deployment
 ```
-
-`helm install --debug gm1 --set Spec.twoStep=1 -f cfgs/gm.yaml --namespace sts-silicom sts-charts/sts-silicom`
-
-`helm install --debug bc --set Spec.twoStep=0 -f cfgs/bc.yaml --namespace sts-silicom sts-charts/sts-silicom`
-
 ## Files to change
 
 Please refer to https://helm.sh/docs/chart_template_guide/values_files/ on how to override the default values of the chart(s).
 
-### cfgs/bc.yaml, cfgs/gm.yaml, cfgs/slave.yaml
-These 3 files  
+### GM deployment example
+Create a local file, gm.yaml with the following contents, changing the values to the actual physical deployment.
+
+```yaml
+NodeSelectors:
+  kubenetes.io/hostname: "master"
+Spec:
+  profileID: 2
+  ports:
+  - ethName: enp101s0f0
+    ql: 4
+    ethPort: 1
+  - ethName: enp101s0f1
+    ql: 4
+    ethPort: 2
+  masterPortMask_GM: 0xfff
+  masterPortMask_BC: 0xfff
+  slavePortMask_BC: 0xfff
+  slavePortMask_TSC: 0xfff
+  ipv6PortMask: 0xfff
+  domainNum_8275_1: 24
+  domainNum_8275_2: 44
+  domainNum_8265_2: 4
+```
+
+Now deploy the chart with the above values.
+
+`helm install -f gm.yaml --debug sts-gm --namespace sts-silicom charts/sts-silicom-0.0.1`
+
+### BC deployment example
+Create a local file, bc.yaml with the following contents, changing the values to the actual physical deployment.
+
+```yaml
+NodeSelectors:
+  kubenetes.io/hostname: "master"
+Spec:
+  profileID: 1
+  ports:
+  - ethName: enp101s0f0
+    ql: 4
+    ethPort: 1
+  - ethName: enp101s0f1
+    ql: 4
+    ethPort: 2
+  masterPortMask_GM: 0xfff
+  masterPortMask_BC: 0x1
+  slavePortMask_BC: 0x2
+  slavePortMask_TSC: 0xfff
+  ipv6PortMask: 0xfff
+  domainNum_8275_1: 24
+  domainNum_8275_2: 44
+  domainNum_8265_2: 4
+```
+
+Now deploy the chart with the above values.
+
+`helm install -f bc.yaml --debug sts-bc --namespace sts-silicom charts/sts-silicom-0.0.1`
+
+### Slave deployment example
+Create a local file, slave.yaml with the following contents, changing the values to the actual physical deployment.
+
+```yaml
+NodeSelectors:
+  kubenetes.io/hostname: "master"
+Spec:
+  profileID: 3
+  ports:
+  - ethName: enp101s0f0
+    ql: 4
+    ethPort: 1
+  - ethName: enp101s0f1
+    ql: 4
+    ethPort: 2
+  masterPortMask_GM: 0xfff
+  masterPortMask_BC: 0x1
+  slavePortMask_BC: 0x2
+  slavePortMask_TSC: 0xfff
+  ipv6PortMask: 0xfff
+  domainNum_8275_1: 24
+  domainNum_8275_2: 44
+  domainNum_8265_2: 4
+```
+
+Now deploy the chart with the above values.
+
+`helm install -f slave.yaml --debug sts-slave --namespace sts-silicom charts/sts-silicom-0.0.1`
 
 ### charts/sts-silicom-0.0.1/values.yaml
 Default values that can be overwritten using `helm install --set` or a file with the same format `helm install -f args.yaml`
@@ -55,17 +134,6 @@ or
 NodeSelectors:
   kubernetes.io/hostname: "worker1"
 ```
-
-#### nodeName
-This is the hostname of the node for the tsync daemonset to run on.
-
-```NodeName: worker2```
-
-#### EnableGps
-Should the gpsd be enabled?
-
-```EnableGPS: true```
-
 
 ## Makefile recipes
 
@@ -88,18 +156,3 @@ There are various recipes in the Makefile to deploy the charts.
 `make test`
 
 `helm install --debug sts-test --dry-run --namespace sts-silicom charts/sts-silicom-0.0.1`
-
-### Deploy Master clock mode
-This will override some of the values.yaml file values.
-
-`helm install --set Spec.twoStep=0 -f cfgs/gm.yaml --debug sts-test --namespace sts-silicom charts/sts-silicom-0.0.1`
-
-### Deploy Boundary clock mode
-This will override some of the values.yaml file values.
-
-`helm install --set Spec.twoStep=1 -f cfgs/bc.yaml --debug sts-test --namespace sts-silicom charts/sts-silicom-0.0.1`
-
-### Deploy Slave clock mode
-This will override some of the values.yaml file values.
-
-`helm install --set Spec.gpsdDbgLevel=8 -f cfgs/slave.yaml --debug sts-test --namespace sts-silicom charts/sts-silicom-0.0.1`
