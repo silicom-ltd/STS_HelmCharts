@@ -137,24 +137,3 @@ NodeSelectors:
   kubernetes.io/hostname: "worker1"
 ```
 
-## Makefile recipes
-
-There are various recipes in the Makefile to deploy the charts.
-
-### Install charts
-
-`make install`
-
-`helm install --debug sts-test --namespace sts-silicom`
-
-## Uninstall charts
-
-`make install`
-
-`helm install --debug sts-test --namespace sts-silicom charts/sts-silicom-0.0.1`
-
-### Verify deploy charts
-
-`make test`
-
-`helm install --debug sts-test --dry-run --namespace sts-silicom charts/sts-silicom-0.0.1`
