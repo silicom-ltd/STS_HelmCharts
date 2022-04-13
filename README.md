@@ -29,6 +29,8 @@ sts-charts/sts-silicom  0.0.1           1.0.0           Silicom STS PTP tsync de
 
 Please refer to https://helm.sh/docs/chart_template_guide/values_files/ on how to override the default values of the chart(s).
 
+NOTE: Possible tsync values to override https://github.com/silicom-ltd/STS_HelmCharts/blob/main/charts/sts-silicom-0.0.1/values.yaml
+
 ### GM deployment example
 Create a local file, gm.yaml with the following contents, changing the values to the actual physical deployment.
 
