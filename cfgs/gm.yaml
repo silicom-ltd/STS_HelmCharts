@@ -1,4 +1,0 @@
-NodeSelectors:
-  kubenetes.io/hostname: "master"
-Spec:
-  profileID: 2
