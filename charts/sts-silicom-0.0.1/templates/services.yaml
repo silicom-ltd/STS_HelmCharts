@@ -31,13 +31,18 @@ spec:
   ports:
     - protocol: TCP
       port: {{.Values.GrpcSvcPort}}
-      targetPort: {{.Values.GrpcSvcPort}}      
+      targetPort: {{.Values.GrpcSvcPort}}
+      name: {{template "node.grpc.name" . }}
     - protocol: TCP
       port: {{.Values.GrpcEvntPort}}
       targetPort: {{.Values.GrpcEvntPort}}
+      name: {{template "node.grpcevnt.name" . }}
     - protocol: TCP
       port: {{.Values.GrpcCfgPort}}
       targetPort: {{.Values.GrpcCfgPort}}
+      name: {{template "node.grpccfg.name" . }}
     - protocol: TCP
       port: {{.Values.GrpcStatPort}}
-      targetPort: {{.Values.GrpcStatPort}}      
+      targetPort: {{.Values.GrpcStatPort}}
+      name: {{template "node.grpcstat.name" . }}
+
