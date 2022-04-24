@@ -9,13 +9,17 @@ ServiceAccount: silicom
 InstallRbac: false
 
 Images:
-  Tsyncd: quay.io/silicom/tsyncd:2.1.0.0
+  Tsyncd: quay.io/silicom/tsyncd:2.1.1.1
   TsyncExtts: quay.io/silicom/tsync_extts:1.0.0
   Phc2Sys: quay.io/silicom/phc2sys:3.1.1
-  GrpcTsyncd: quay.io/silicom/grpc-tsyncd:2.1.0.0
+  GrpcTsyncd: quay.io/silicom/grpc-tsyncd:2.1.1.1
   StsPlugin: quay.io/silicom/sts-plugin:0.0.2
   Gpsd: quay.io/silicom/gpsd:3.23.1
 GrpcSvcPort: 50051
+GrpcEvntPort: 50052
+GrpcCfgPort: 50053
+GrpcStatPort: 50054
+
 GpsSvcPort: 2947
 
 Spec:
