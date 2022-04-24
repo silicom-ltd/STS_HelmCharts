@@ -28,9 +28,12 @@ spec:
         ports:
         - containerPort: {{.Values.GrpcSvcPort}}
           name: {{template "node.grpc.name" . }}
-        - containerPort: {{.Values.GrpcEvntPort}}
+        - containerPort: {{.Values.GrpcEvntPort}}        
+          name: {{template "node.grpcevnt.name" . }}
         - containerPort: {{.Values.GrpcCfgPort}}
+          name: {{template "node.grpccfg.name" . }}
         - containerPort: {{.Values.GrpcStatPort}}
+          name: {{template "node.grpcstat.name" . }}   
         securityContext:
           privileged: true
           readOnlyRootFilesystem: false
