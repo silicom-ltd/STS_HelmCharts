@@ -44,9 +44,6 @@ data:
     inbandMode = {{.Values.Spec.inbandMode}} 
     dumpMode = {{.Values.Spec.dumpMode}}
     getRawTs = {{.Values.Spec.getRawTs}}
-    countDelay = {{.Values.Spec.countDelay}}
-    dataDelay = {{.Values.Spec.dataDelay}}
-    statDelay = {{.Values.Spec.statDelay}}
     aprLevel = {{.Values.Spec.aprLevel}}
     traceModule = {{.Values.Spec.traceModule}}
     traceLevel = {{.Values.Spec.traceLevel}}
