@@ -11,15 +11,15 @@
 {{- end -}}
 
 {{- define "node.grpcevnt.name" -}}
-{{- printf "%.*s-grp" 11 .Release.Name | replace "." "-" | trunc 15 | quote -}}
+{{- printf "%.*s-evt" 11 .Release.Name | replace "." "-" | trunc 15 | quote -}}
 {{- end -}}
 
 {{- define "node.grpccfg.name" -}}
-{{- printf "%.*s-grp" 11 .Release.Name | replace "." "-" | trunc 15 | quote -}}
+{{- printf "%.*s-cfg" 11 .Release.Name | replace "." "-" | trunc 15 | quote -}}
 {{- end -}}
 
 {{- define "node.grpcstat.name" -}}
-{{- printf "%.*s-grp" 11 .Release.Name | replace "." "-" | trunc 15 | quote -}}
+{{- printf "%.*s-stt" 11 .Release.Name | replace "." "-" | trunc 15 | quote -}}
 {{- end -}}
 
 {{- define "node.gps.name" -}}
