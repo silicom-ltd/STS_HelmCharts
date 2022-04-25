@@ -67,7 +67,7 @@ Create a local file, bc.yaml with the following contents, changing the values to
 NodeSelectors:
   kubenetes.io/hostname: "master"
 Spec:
-  profileID: 1
+  profileID: 3
   ports:
   - ethName: enp101s0f0
     ql: 4
@@ -96,7 +96,7 @@ Create a local file, slave.yaml with the following contents, changing the values
 NodeSelectors:
   kubenetes.io/hostname: "master"
 Spec:
-  profileID: 3
+  profileID: 4
   ports:
   - ethName: enp101s0f0
     ql: 4
