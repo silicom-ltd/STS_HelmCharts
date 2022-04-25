@@ -138,11 +138,15 @@ NodeSelectors:
 ```
 
 ## Creating release tgz files for gh-files
+To create a new version, override Makefile PACKAGE_VERSION to the appropriate version. This will edit the Chart.yaml file.
+
 ```
 git checkout main
-make chart
+PACKAGE_VERSION=$version make chart
 git checkout gh-pages
-cp output/* .
+mv output/* .
+helm repo index .
+git add sts-silicom-$version.tgz
 git commit -am "Release x.x.x"
 git push
 git checkout main
