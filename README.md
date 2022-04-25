@@ -146,7 +146,7 @@ PACKAGE_VERSION=$version make chart
 git checkout gh-pages
 mv output/* .
 helm repo index .
-git add sts-silicom-$version.tgz
+git add index.yaml sts-silicom-$version.tgz
 git commit -am "Release x.x.x"
 git push
 git checkout main
