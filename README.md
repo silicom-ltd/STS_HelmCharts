@@ -137,3 +137,13 @@ NodeSelectors:
   kubernetes.io/hostname: "worker1"
 ```
 
+## Creating release tgz files for gh-files
+```
+git checkout main
+make chart
+git checkout gh-pages
+cp output/* .
+git commit -am "Release x.x.x"
+git push
+git checkout main
+```
