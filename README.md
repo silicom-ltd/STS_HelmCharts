@@ -151,3 +151,11 @@ git commit -am "Release x.x.x"
 git push
 git checkout main
 ```
+
+## Extra
+
+#### Retreive tgz release file
+```helm pull sts-charts/sts-silicom```
+
+#### Show values of current chart
+```helm show values sts-charts/sts-silicom```
