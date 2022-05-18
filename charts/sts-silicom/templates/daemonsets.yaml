@@ -33,7 +33,10 @@ spec:
         - containerPort: {{.Values.GrpcCfgPort}}
           name: {{template "node.grpccfg.name" . }}
         - containerPort: {{.Values.GrpcStatPort}}
-          name: {{template "node.grpcstat.name" . }}   
+          name: {{template "node.grpcstat.name" . }}
+        volumeMounts:
+          - name: logs
+            mountPath: /var/log          
         securityContext:
           privileged: true
           readOnlyRootFilesystem: false
@@ -56,6 +59,8 @@ spec:
           - name: {{printf "%.*s-cfg" 11 .Release.Name | quote}}
             mountPath: /etc/tsyncd/tsyncd.conf
             subPath: tsyncd.conf
+          - name: logs
+            mountPath: /var/log
         securityContext:
           privileged: true
       volumes:
@@ -66,6 +71,8 @@ spec:
         configMap:
           defaultMode: 0777
           name: {{printf "%.*s-cfg" 11 .Release.Name | quote}}
+      - name: logs
+        emptyDir: {}
 
 ---
 
