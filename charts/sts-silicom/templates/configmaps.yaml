@@ -8,6 +8,7 @@ data:
     profileID = {{.Values.Spec.profileID}}
 {{- range $i, $dev := .Values.Spec.ports }}
     port{{$dev.ethPort}} = {{$dev.ethName}}
+    portSpeed{{$dev.ethPort}} = {{$dev.portSpeed}}
     ql{{$dev.ethPort}} = {{$dev.ql}}
 {{- end}}
     synceHoldOff = {{.Values.Spec.synceHoldOff}}
@@ -31,6 +32,7 @@ data:
     domainNum_8265_2 = {{ .Values.Spec.domainNum_8265_2 }}
     forwardable = {{.Values.Spec.forwardable}}
     twoStep = {{.Values.Spec.twoStep}}
+    freerunSQ = {{.Values.Spec.freerunSQ}}
     priority2 = {{.Values.Spec.priority2}}
     modePPS = {{.Values.Spec.modePPS}}
     srcPPS = {{.Values.Spec.srcPPS}}
@@ -80,9 +82,9 @@ data:
     gnssUseLockTP1 = {{.Values.Spec.gnssUseLockTP1}}
     gnssDutyTP1 = {{.Values.Spec.gnssDutyTP1}}
     gnssDutyLockTP1 = {{.Values.Spec.gnssDutyLockTP1}}
-    gnssTP2En = {{.Values.Spec.gnssTP2En}}
-    gnssFreqTP2 = {{.Values.Spec.gnssFreqTP2}}
-    gnssFreqLockTP2 = {{.Values.Spec.gnssFreqLockTP2}}
+    gnssTP2En = {{.Values.Spec.gnssTP2En}}  
+    gnssFreqTP2 = {{.Values.Spec.gnssFreqTP2 | int}}
+    gnssFreqLockTP2 = {{(.Values.Spec.gnssFreqLockTP2 | int)}}    
     gnssUseLockTP2 = {{.Values.Spec.gnssUseLockTP2}}
     gnssDutyTP2 = {{.Values.Spec.gnssDutyTP2}}
     gnssDutyLockTP2 = {{.Values.Spec.gnssDutyLockTP2}}
