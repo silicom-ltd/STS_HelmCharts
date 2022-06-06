@@ -42,7 +42,7 @@ Spec:
   domainNum_8265_2: 4
   forwardable: 1
   twoStep: 0
-  freerunSQ: 1
+  freerunSQ: 0
   priority2: 128
   modePPS: 2
   mode10MHz: 2
