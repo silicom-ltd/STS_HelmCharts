@@ -22,6 +22,38 @@ spec:
       dnsPolicy: ClusterFirstWithHostNet
       hostNetwork: true
       containers:
+      - image: {{.Values.Images.TsyncExtts}}
+        name: {{ template "node.tsync_extts.name" . }}
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: devfs
+          mountPath: /dev
+        env:
+        - name: WAIT_FOR_GPS
+          value: {{.Values.EnableGPS | quote}}
+{{- if eq (.Values.Spec.profileID | int) 2}}
+        - name: GM_MODE
+          value: "-g"
+{{- end}}
+        - name: GPS_SVC_PORT
+          value: {{.Values.GpsSvcPort | quote}}
+        securityContext:
+          privileged: true
+      - image: {{.Values.Images.Gpsd}}
+        imagePullPolicy: Always
+        name: {{ template "node.gps.name" . }}
+        ports:
+        - containerPort: {{.Values.GpsSvcPort}}
+          name: {{ template "node.gps.name" . }}
+        env:
+        - name: GPS_SVC_PORT
+          value: {{.Values.GpsSvcPort | quote}}
+        volumeMounts:
+        - name: devfs
+          mountPath: /dev
+        securityContext:
+          privileged: true
+
       - image: {{ .Values.Images.GrpcTsyncd }}
         imagePullPolicy: Always
         name: {{template "node.grpc.name" . }}
@@ -63,43 +95,6 @@ spec:
             mountPath: /var/log
         securityContext:
           privileged: true
-      volumes:
-      - name: devfs
-        hostPath:
-          path: /dev
-      - name: {{printf "%.*s-cfg" 11 .Release.Name | quote}}
-        configMap:
-          defaultMode: 0777
-          name: {{printf "%.*s-cfg" 11 .Release.Name | quote}}
-      - name: logs
-        emptyDir: {}
-
----
-
-apiVersion: apps/v1
-kind: DaemonSet
-metadata:
-  labels:
-    app: {{ template "node.phc2sys.name" . }}
-  name: {{ template "node.phc2sys.name" . }}
-  namespace: {{.Release.Namespace}}
-spec:
-  selector:
-    matchLabels:
-      app: {{ template "node.phc2sys.name" . }}
-  template:
-    metadata:
-      labels:
-        app: {{ template "node.phc2sys.name" . }}
-    spec:
-      shareProcessNamespace: true
-      nodeSelector:
-{{- range $k, $v := .Values.NodeSelectors}}
-        {{ $k }}: {{ $v | quote -}}
-{{- end}}
-      dnsPolicy: ClusterFirstWithHostNet
-      hostNetwork: true
-      containers:
       - image: {{.Values.Images.Phc2Sys}}
         name: {{ template "node.phc2sys.name" . }}
         imagePullPolicy: Always
@@ -121,68 +116,9 @@ spec:
       - name: devfs
         hostPath:
           path: /dev
-
-{{- if .Values.EnableGPS }}
-
----
-
-apiVersion: apps/v1
-kind: DaemonSet
-metadata:
-  labels:
-    app: {{ template "node.gps.name" . }}
-  name: {{ template "node.gps.name" . }}
-  namespace: {{.Release.Namespace}}
-spec:
-  selector:
-    matchLabels:
-      app: {{ template "node.gps.name" . }}
-  template:
-    metadata:
-      labels:
-        app: {{ template "node.gps.name" . }}
-    spec:
-      shareProcessNamespace: true
-      nodeSelector:
-{{- range $k, $v := .Values.NodeSelectors }}
-        {{ $k }}: "{{ $v }}"
-{{- end }}
-      dnsPolicy: ClusterFirstWithHostNet
-      hostNetwork: true
-      containers:
-      - image: {{.Values.Images.TsyncExtts}}
-        name: {{ template "node.tsync_extts.name" . }}
-        imagePullPolicy: Always
-        volumeMounts:
-        - name: devfs
-          mountPath: /dev
-        env:
-        - name: WAIT_FOR_GPS
-          value: {{.Values.EnableGPS | quote}}
-{{- if eq (.Values.Spec.profileID | int) 2}}
-        - name: GM_MODE
-          value: "-g"
-{{- end}}
-        - name: GPS_SVC_PORT
-          value: {{.Values.GpsSvcPort | quote}}
-        securityContext:
-          privileged: true
-      - image: {{.Values.Images.Gpsd}}
-        imagePullPolicy: Always
-        name: {{ template "node.gps.name" . }}
-        ports:
-        - containerPort: {{.Values.GpsSvcPort}}
-          name: {{ template "node.gps.name" . }}
-        env:
-        - name: GPS_SVC_PORT
-          value: {{.Values.GpsSvcPort | quote}}
-        volumeMounts:
-        - name: devfs
-          mountPath: /dev
-        securityContext:
-          privileged: true
-      volumes:
-      - name: devfs
-        hostPath:
-          path: /dev
-{{- end}}
+      - name: {{printf "%.*s-cfg" 11 .Release.Name | quote}}
+        configMap:
+          defaultMode: 0777
+          name: {{printf "%.*s-cfg" 11 .Release.Name | quote}}
+      - name: logs
+        emptyDir: {}
