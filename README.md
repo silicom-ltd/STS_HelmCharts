@@ -41,13 +41,12 @@ Spec:
   profileID: 2
   ports:
   - ethName: enp101s0f0
-    portSpeed: 10000
     ql: 4
     ethPort: 1
   - ethName: enp101s0f1
-    portSpeed: 10000
     ql: 4
     ethPort: 2
+```    
   masterPortMask_GM: 0xfff
   masterPortMask_BC: 0xfff
   slavePortMask_BC: 0xfff
@@ -72,13 +71,12 @@ Spec:
   profileID: 3
   ports:
   - ethName: enp101s0f0
-    portSpeed: 10000
     ql: 4
     ethPort: 1
   - ethName: enp101s0f1
-    portSpeed: 10000
     ql: 4
     ethPort: 2
+```    
   masterPortMask_GM: 0xfff
   masterPortMask_BC: 0x1
   slavePortMask_BC: 0x2
@@ -103,13 +101,12 @@ Spec:
   profileID: 4
   ports:
   - ethName: enp101s0f0
-    portSpeed: 10000
     ql: 4
     ethPort: 1
   - ethName: enp101s0f1
-    portSpeed: 10000
     ql: 4
     ethPort: 2
+```    
   masterPortMask_GM: 0xfff
   masterPortMask_BC: 0x1
   slavePortMask_BC: 0x2
