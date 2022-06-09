@@ -32,6 +32,46 @@ Spec:
     ql: 4
     portSpeed: 10000
     ethPort: 2
+  - ethName: enp101s0f2
+    ql: 4
+    portSpeed: 10000
+    ethPort: 3
+  - ethName: enp101s0f3
+    ql: 4
+    portSpeed: 10000
+    ethPort: 4
+  - ethName: enp101s0f4
+    ql: 4
+    portSpeed: 10000
+    ethPort: 5
+  - ethName: enp101s0f5
+    ql: 4
+    portSpeed: 10000
+    ethPort: 6
+  - ethName: enp101s0f6
+    ql: 4
+    portSpeed: 10000
+    ethPort: 7
+  - ethName: enp101s0f7
+    ql: 4
+    portSpeed: 10000
+    ethPort: 8
+  - ethName: enp103s0f0
+    ql: 4
+    portSpeed: 25000
+    ethPort: 9
+  - ethName: enp103s0f1
+    ql: 4
+    portSpeed: 25000
+    ethPort: 10
+  - ethName: enp103s0f2
+    ql: 4
+    portSpeed: 25000
+    ethPort: 11
+  - ethName: enp103s0f3
+    ql: 4
+    portSpeed: 25000
+    ethPort: 12    
   masterPortMask_GM: 0xfff
   masterPortMask_BC: 0xfff
   slavePortMask_BC: 0xfff
