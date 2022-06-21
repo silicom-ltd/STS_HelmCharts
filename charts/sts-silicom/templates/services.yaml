@@ -27,7 +27,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: {{ template "node.grpc.name" . }}
+    app: grpc_tsyncd    
   ports:
     - protocol: TCP
       port: {{.Values.GrpcSvcPort}}
@@ -45,4 +45,7 @@ spec:
       port: {{.Values.GrpcStatPort}}
       targetPort: {{.Values.GrpcStatPort}}
       name: {{template "node.grpcstat.name" . }}
-
+    - protocol: TCP
+      port: {{.Values.GrpcTimingMgr}}
+      targetPort: {{.Values.GrpcTimingMgr}}
+      name: {{template "node.grpctimingmgr.name" . }}
