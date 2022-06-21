@@ -46,7 +46,7 @@ Spec:
   - ethName: enp101s0f1
     ql: 4
     ethPort: 2
-```    
+```
   masterPortMask_GM: 0xfff
   masterPortMask_BC: 0xfff
   slavePortMask_BC: 0xfff
@@ -76,7 +76,7 @@ Spec:
   - ethName: enp101s0f1
     ql: 4
     ethPort: 2
-```    
+```
   masterPortMask_GM: 0xfff
   masterPortMask_BC: 0x1
   slavePortMask_BC: 0x2
@@ -106,7 +106,7 @@ Spec:
   - ethName: enp101s0f1
     ql: 4
     ethPort: 2
-```    
+```
   masterPortMask_GM: 0xfff
   masterPortMask_BC: 0x1
   slavePortMask_BC: 0x2
