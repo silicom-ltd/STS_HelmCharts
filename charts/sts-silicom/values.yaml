@@ -77,7 +77,7 @@ Spec:
   masterPortMask_BC: 0xfff
   slavePortMask_BC: 0xfff
   slavePortMask_TSC: 0xfff
-  ipv6PortMask: 0xfff
+  ipv6PortMask: 0x000
   domainNum_8275_1: 24
   domainNum_8275_2: 44
   domainNum_8265_2: 4
