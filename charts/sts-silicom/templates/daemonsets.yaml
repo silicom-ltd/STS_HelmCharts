@@ -66,9 +66,14 @@ spec:
           name: {{template "node.grpccfg.name" . }}
         - containerPort: {{.Values.GrpcStatPort}}
           name: {{template "node.grpcstat.name" . }}
+        - containerPort: {{.Values.GrpcTimingMgr}}
+          name: {{template "node.grpctimingmgr.name" . }}
         volumeMounts:
           - name: logs
-            mountPath: /var/log          
+            mountPath: /var/log
+          - name: {{printf "%.*s-cfg" 11 .Release.Name | quote}}
+            mountPath: /etc/tsyncd/tsyncd_grpc.json
+            subPath: tsyncd_grpc.json            
         securityContext:
           privileged: true
           readOnlyRootFilesystem: false
