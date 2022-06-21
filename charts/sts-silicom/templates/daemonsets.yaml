@@ -4,15 +4,15 @@ metadata:
   name: {{ template "node.tsync.name" . }}
   namespace: {{.Release.Namespace}}
   labels:
-    app: {{ template "node.tsync.name" . }}
+    app: grpc_tsyncd    
 spec:
   selector:
     matchLabels:
-      app: {{ template "node.tsync.name" . }}
+      app: grpc_tsyncd      
   template:
     metadata:
       labels:
-        app: {{ template "node.tsync.name" . }}
+        app: grpc_tsyncd        
     spec:
       shareProcessNamespace: true
       nodeSelector:
