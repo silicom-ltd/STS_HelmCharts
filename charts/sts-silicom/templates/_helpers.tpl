@@ -22,6 +22,10 @@
 {{- printf "%.*s-stt" 11 .Release.Name | replace "." "-" | trunc 15 | quote -}}
 {{- end -}}
 
+{{- define "node.grpctimingmgr.name" -}}
+{{- printf "%.*s-mgr" 11 .Release.Name | replace "." "-" | trunc 15 | quote -}}
+{{- end -}}
+
 {{- define "node.gps.name" -}}
 {{- printf "%.*s-gps" 11 .Release.Name | replace "." "-" | trunc 15 | quote -}}
 {{- end -}}
