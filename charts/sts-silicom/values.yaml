@@ -9,10 +9,10 @@ ServiceAccount: silicom
 InstallRbac: false
 
 Images:
-  Tsyncd: quay.io/silicom/tsyncd:2.1.2.3
+  Tsyncd: quay.io/silicom/tsyncd:2.1.2.4
   TsyncExtts: quay.io/silicom/tsync_extts:1.0.0
   Phc2Sys: quay.io/silicom/phc2sys:3.1.1
-  GrpcTsyncd: quay.io/silicom/grpc-tsyncd:2.1.2.3
+  GrpcTsyncd: quay.io/silicom/grpc-tsyncd:2.1.2.4
   Gpsd: quay.io/silicom/gpsd:3.23.1
 GrpcSvcPort: 50051
 GrpcEvntPort: 50052
@@ -100,7 +100,6 @@ Spec:
   syncePortMask_BC: 0xfff
   syncePortMask_TSC: 0xfff
   synceHoldOff: 500
-  synceCpu: 10
   gpsdDbgLevel: 2 
   gnssSigGpsEn: 1
   gnssSigGpsL1CAEn: 1
@@ -123,13 +122,11 @@ Spec:
   gnssCableDelay: 50
   gnssPulseDef: 1
   gnssPulseLenDef: 0
-  gnssTP1En: 1
   gnssFreqTP1: 1
   gnssFreqLockTP1: 1
   gnssUseLockTP1: 1
   gnssDutyTP1: 0
   gnssDutyLockTP1: 10
-  gnssTP2En: 1
   gnssFreqTP2: 10000000
   gnssFreqLockTP2: 10000000
   gnssUseLockTP2: 1
@@ -146,7 +143,8 @@ Spec:
   gnssSvinAccLimit: 100000
   gnssLockMode: 1
   gnssLockTh: 100
-  gnssClockOutEn: 1
+  gnssClockOutEn: 0
+  stsCpu: 10
   IPCServer: 1
   swTimestamp: 0
   inbandMode: 1 
@@ -160,4 +158,6 @@ Spec:
   taccLogEn: 0
   phyLedsCtl: 0
   eventMask: 3
+  gnssTP1En: 0
+  gnssTP2En: 0
   debugAPI: 0
