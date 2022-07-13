@@ -40,7 +40,7 @@ data:
     mode10MHz = {{.Values.Spec.mode10MHz}}
     synceRecClkPort = {{.Values.Spec.synceRecClkPort}}
     syncOption = {{.Values.Spec.syncOption}}
-    synceCpu = {{.Values.Spec.synceCpu}}
+    stsCpu = {{.Values.Spec.stsCpu}}
     ipv6PortMask = {{.Values.Spec.ipv6PortMask}}
     swTimestamp = {{.Values.Spec.swTimestamp}}
     inbandMode = {{.Values.Spec.inbandMode}} 
