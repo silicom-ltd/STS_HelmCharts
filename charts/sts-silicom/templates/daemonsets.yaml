@@ -31,6 +31,8 @@ spec:
         env:
         - name: WAIT_FOR_GPS
           value: {{.Values.EnableGPS | quote}}
+        - name: STS_Cpu
+          value: {{.Values.Spec.stsCpu | quote}}          
 {{- if eq (.Values.Spec.profileID | int) 2}}
         - name: GM_MODE
           value: "-g"
@@ -39,6 +41,7 @@ spec:
           value: {{.Values.GpsSvcPort | quote}}
         securityContext:
           privileged: true
+
       - image: {{.Values.Images.Gpsd}}
         imagePullPolicy: Always
         name: {{ template "node.gps.name" . }}
@@ -48,6 +51,8 @@ spec:
         env:
         - name: GPS_SVC_PORT
           value: {{.Values.GpsSvcPort | quote}}
+        - name: STS_Cpu
+          value: {{.Values.Spec.stsCpu | quote}}
         volumeMounts:
         - name: devfs
           mountPath: /dev
@@ -68,6 +73,9 @@ spec:
           name: {{template "node.grpcstat.name" . }}
         - containerPort: {{.Values.GrpcTimingMgr}}
           name: {{template "node.grpctimingmgr.name" . }}
+        env:
+        - name: STS_Cpu
+          value: {{.Values.Spec.stsCpu | quote}}
         volumeMounts:
           - name: logs
             mountPath: /var/log
@@ -80,14 +88,17 @@ spec:
           capabilities:
             add:
             - CAP_SYS_ADMIN
+            
       - image: {{.Values.Images.Tsyncd}}
         imagePullPolicy: Always
         name: {{ template "node.tsync.name" . }}
         env:
-          - name: WAIT_FOR_GPS
-            value: {{.Values.EnableGPS | quote}}
-          - name: GPS_SVC_PORT
-            value: "{{.Values.GpsSvcPort}}"
+        - name: WAIT_FOR_GPS
+          value: {{.Values.EnableGPS | quote}}
+        - name: GPS_SVC_PORT
+          value: "{{.Values.GpsSvcPort}}"
+        - name: STS_Cpu
+          value: {{.Values.Spec.stsCpu | quote}}            
         args:
         - --zap-log-level=10
         volumeMounts:
@@ -100,6 +111,7 @@ spec:
             mountPath: /var/log
         securityContext:
           privileged: true
+
       - image: {{.Values.Images.Phc2Sys}}
         name: {{ template "node.phc2sys.name" . }}
         imagePullPolicy: Always
@@ -108,6 +120,8 @@ spec:
           value: {{.Values.EnableGPS | quote}}
         - name: GPS_SVC_PORT
           value: {{.Values.GpsSvcPort | quote}}
+        - name: STS_Cpu
+          value: {{.Values.Spec.stsCpu | quote}}          
         volumeMounts:
         - name: devfs
           mountPath: /dev
