@@ -9,10 +9,10 @@ ServiceAccount: silicom
 InstallRbac: false
 
 Images:
-  Tsyncd: quay.io/silicom/tsyncd:2.1.2.4
+  Tsyncd: quay.io/silicom/tsyncd:2.1.2.6
   TsyncExtts: quay.io/silicom/tsync_extts:1.0.0
   Phc2Sys: quay.io/silicom/phc2sys:3.1.1
-  GrpcTsyncd: quay.io/silicom/grpc-tsyncd:2.1.2.4
+  GrpcTsyncd: quay.io/silicom/grpc-tsyncd:2.1.2.6
   Gpsd: quay.io/silicom/gpsd:3.23.1
 GrpcSvcPort: 50051
 GrpcEvntPort: 50052
@@ -138,6 +138,7 @@ Spec:
   gnssMsgUbxUsb: 0
   gnssIntfDetect: 1
   gnssAntSet: 2
+  gnssCwTh: 15
   gnssRecvTMode: 1
   gnssSvinMinDur: 120
   gnssSvinAccLimit: 100000
@@ -145,6 +146,8 @@ Spec:
   gnssLockTh: 100
   gnssClockOutEn: 0
   stsCpu: 10
+  phaseOfstEn_GM: 0
+  phaseOfstVal_GM: 1948960  
   IPCServer: 1
   swTimestamp: 0
   inbandMode: 1 
