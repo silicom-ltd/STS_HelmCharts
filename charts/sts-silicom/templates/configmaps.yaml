@@ -41,6 +41,8 @@ data:
     synceRecClkPort = {{.Values.Spec.synceRecClkPort}}
     syncOption = {{.Values.Spec.syncOption}}
     stsCpu = {{.Values.Spec.stsCpu}}
+    phaseOfstEn_GM = {{.Values.Spec.phaseOfstEn_GM}}
+    phaseOfstVal_GM = {{(.Values.Spec.phaseOfstVal_GM | int)}}
     ipv6PortMask = {{.Values.Spec.ipv6PortMask}}
     swTimestamp = {{.Values.Spec.swTimestamp}}
     inbandMode = {{.Values.Spec.inbandMode}} 
@@ -94,6 +96,7 @@ data:
     gnssMsgUbxUsb = {{.Values.Spec.gnssMsgUbxUsb}}
     gnssIntfDetect = {{.Values.Spec.gnssIntfDetect}}
     gnssAntSet = {{.Values.Spec.gnssAntSet}}
+    gnssCwTh = {{.Values.Spec.gnssCwTh}}
     gnssRecvTMode = {{.Values.Spec.gnssRecvTMode}}
     gnssSvinMinDur = {{.Values.Spec.gnssSvinMinDur}}
     gnssSvinAccLimit = {{.Values.Spec.gnssSvinAccLimit}}
