@@ -138,7 +138,7 @@ Spec:
   gnssMsgUbxUsb: 0
   gnssIntfDetect: 1
   gnssAntSet: 2
-  gnssCwTh: 15
+  gnssCwTh: 50
   gnssRecvTMode: 1
   gnssSvinMinDur: 120
   gnssSvinAccLimit: 100000
