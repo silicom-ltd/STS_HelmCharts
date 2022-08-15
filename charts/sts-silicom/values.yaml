@@ -147,7 +147,7 @@ Spec:
   gnssClockOutEn: 0
   stsCpu: 10
   phaseOfstEn_GM: 0
-  phaseOfstVal_GM: 1948960  
+  phaseOfstVal_GM: 1948960
   IPCServer: 1
   swTimestamp: 0
   inbandMode: 1 
