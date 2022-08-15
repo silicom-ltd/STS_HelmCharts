@@ -38,6 +38,7 @@ data:
     srcPPS = {{.Values.Spec.srcPPS}}
     src10MHz = {{.Values.Spec.src10MHz}}
     mode10MHz = {{.Values.Spec.mode10MHz}}
+    freqCat = {{.Values.Spec.freqCat}}
     hoSpecDuration = {{(.Values.Spec.hoSpecDuration | int)}}
     synceRecClkPort = {{.Values.Spec.synceRecClkPort}}
     syncOption = {{.Values.Spec.syncOption}}
