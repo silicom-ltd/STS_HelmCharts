@@ -89,7 +89,7 @@ Spec:
   mode10MHz: 2
   srcPPS: 1
   src10MHz: 1
-  freqCat: 3
+  freqCat: 1
   hoSpecDuration: 14400
   synceRecClkMode: 2
   synceRecClkPort: 0
