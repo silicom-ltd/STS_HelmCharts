@@ -12,7 +12,7 @@ data:
     ql{{$dev.ethPort}} = {{$dev.ql}}
 {{- end}}
     synceHoldOff = {{.Values.Spec.synceHoldOff}}
-{{- if or (eq (.Values.Spec.profileID | int) 2) (eq (.Values.Spec.profileID | int) 5) }}
+{{- if or (eq (.Values.Spec.profileID | int) 1) (eq (.Values.Spec.profileID | int) 2) (eq (.Values.Spec.profileID | int) 5) }}
     masterPortMask_GM = {{ printf "0x%x" (.Values.Spec.masterPortMask_GM | int)}}
     syncePortMask_GM = {{ printf "0x%x" (.Values.Spec.syncePortMask_GM | int)}}
 {{- end}}
