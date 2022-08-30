@@ -22,26 +22,6 @@ spec:
       dnsPolicy: ClusterFirstWithHostNet
       hostNetwork: true
       containers:
-      - image: {{.Values.Images.TsyncExtts}}
-        name: {{ template "node.tsync_extts.name" . }}
-        imagePullPolicy: Always
-        volumeMounts:
-        - name: devfs
-          mountPath: /dev
-        env:
-        - name: WAIT_FOR_GPS
-          value: {{.Values.EnableGPS | quote}}
-        - name: STS_Cpu
-          value: {{.Values.Spec.stsCpu | quote}}          
-{{- if eq (.Values.Spec.profileID | int) 2}}
-        - name: GM_MODE
-          value: "-g"
-{{- end}}
-        - name: GPS_SVC_PORT
-          value: {{.Values.GpsSvcPort | quote}}
-        securityContext:
-          privileged: true
-
       - image: {{.Values.Images.Gpsd}}
         imagePullPolicy: Always
         name: {{ template "node.gps.name" . }}
@@ -98,7 +78,11 @@ spec:
         - name: GPS_SVC_PORT
           value: "{{.Values.GpsSvcPort}}"
         - name: STS_Cpu
-          value: {{.Values.Spec.stsCpu | quote}}            
+          value: {{.Values.Spec.stsCpu | quote}}
+{{- if or (eq (.Values.Spec.profileID | int) 1) (eq (.Values.Spec.profileID | int) 2) (eq (.Values.Spec.profileID | int) 5) }}
+        - name: GM_MODE
+          value: "-g"
+{{- end}}          
         args:
         - --zap-log-level=10
         volumeMounts:
