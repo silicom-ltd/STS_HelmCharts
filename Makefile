@@ -1,7 +1,7 @@
 
 HELM			?= $(shell pwd)/bin/linux-amd64/helm
 PACKAGE_NAME    := sts-silicom
-PACKAGE_VERSION	?= 0.0.7
+PACKAGE_VERSION	?= 0.0.8
 CHART_NAME      := sts-test
 
 .PHONY: package helm clean chart
