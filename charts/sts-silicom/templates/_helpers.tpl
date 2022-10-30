@@ -33,7 +33,3 @@
 {{- define "node.phc2sys.name" -}}
 {{- printf "%.*s-phc" 11 .Release.Name | replace "." "-" | trunc 15 | quote -}}
 {{- end -}}
-
-{{- define "node.tsync_extts.name" -}}
-{{- printf "%.*s-ext" 11 .Release.Name | replace "." "-" | trunc 15 | quote -}}
-{{- end -}}
