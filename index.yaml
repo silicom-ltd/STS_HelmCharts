@@ -3,6 +3,17 @@ entries:
   sts-silicom:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2023-01-24T13:41:53.00473789+02:00"
+    description: Silicom STS PTP tsync deployment
+    digest: 4b425caecc2783f4ea8d27836cc74aa23db3601057213efce6087a1df330f73c
+    icon: https://avatars.githubusercontent.com/u/55542927
+    name: sts-silicom
+    type: application
+    urls:
+    - sts-silicom-0.0.9.tgz
+    version: 0.0.9
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2022-09-14T17:58:53.170094886+03:00"
     description: Silicom STS PTP tsync deployment
     digest: 1f0c364bb7a0b47481fa864292c5cc7f4fdbd78b984b109ebdc011116c1d5d8f
@@ -89,4 +100,4 @@ entries:
     urls:
     - sts-silicom-0.0.1.tgz
     version: 0.0.1
-generated: "2022-09-14T17:58:53.162527151+03:00"
+generated: "2023-01-24T13:41:52.996859658+02:00"
