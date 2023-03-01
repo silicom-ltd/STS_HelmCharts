@@ -9,9 +9,9 @@ ServiceAccount: silicom
 InstallRbac: false
 
 Images:
-  Tsyncd: quay.io/silicom/tsyncd:2.1.2.15
+  Tsyncd: quay.io/silicom/tsyncd:2.1.2.17
   Phc2Sys: quay.io/silicom/phc2sys:3.1-00193-g6bac465
-  GrpcTsyncd: quay.io/silicom/grpc-tsyncd:2.1.2.15
+  GrpcTsyncd: quay.io/silicom/grpc-tsyncd:2.1.2.17
   Gpsd: quay.io/silicom/gpsd:3.23.1
 GrpcSvcPort: 50051
 GrpcEvntPort: 50052
