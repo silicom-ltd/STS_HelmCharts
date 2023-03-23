@@ -9,6 +9,9 @@ data:
 {{- range $i, $dev := .Values.Spec.ports }}
     port{{$dev.ethPort}} = {{$dev.ethName}}
     portSpeed{{$dev.ethPort}} = {{$dev.portSpeed}}
+{{- if  ($dev.portFEC) }}
+    portFEC{{$dev.ethPort}} = {{$dev.portFEC}}
+{{- end}}
     ql{{$dev.ethPort}} = {{$dev.ql}}
 {{- end}}
     synceHoldOff = {{.Values.Spec.synceHoldOff}}
