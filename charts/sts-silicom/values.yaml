@@ -9,9 +9,9 @@ ServiceAccount: silicom
 InstallRbac: false
 
 Images:
-  Tsyncd: quay.io/silicom/tsyncd:2.1.2.17
+  Tsyncd: quay.io/silicom/tsyncd:2.1.2.18
   Phc2Sys: quay.io/silicom/phc2sys:3.1-00193-g6bac465
-  GrpcTsyncd: quay.io/silicom/grpc-tsyncd:2.1.2.17
+  GrpcTsyncd: quay.io/silicom/grpc-tsyncd:2.1.2.18
   Gpsd: quay.io/silicom/gpsd:3.23.1
 GrpcSvcPort: 50051
 GrpcEvntPort: 50052
@@ -25,53 +25,65 @@ Spec:
   profileID: 2
   ports:
   - ethName: enp101s0f0
-    ql1: 4
+    ql: 4
     portSpeed: 10000
+    portFEC: NoFEC
     ethPort: 1
   - ethName: enp101s0f1
-    ql2: 4
+    ql: 4
     portSpeed: 10000
+    portFEC: NoFEC
     ethPort: 2
   - ethName: enp101s0f2
-    ql3: 4
+    ql: 4
     portSpeed: 10000
+    portFEC: NoFEC
     ethPort: 3
   - ethName: enp101s0f3
-    ql4: 4
+    ql: 4
     portSpeed: 10000
+    portFEC: NoFEC
     ethPort: 4
   - ethName: enp101s0f4
-    ql5: 4
+    ql: 4
     portSpeed: 10000
+    portFEC: NoFEC
     ethPort: 5
   - ethName: enp101s0f5
-    ql6: 4
+    ql: 4
     portSpeed: 10000
+    portFEC: NoFEC
     ethPort: 6
   - ethName: enp101s0f6
-    ql7: 4
+    ql: 4
     portSpeed: 10000
+    portFEC: NoFEC
     ethPort: 7
   - ethName: enp101s0f7
-    ql8: 4
+    ql: 4
     portSpeed: 10000
+    portFEC: NoFEC
     ethPort: 8
   - ethName: enp103s0f0
-    ql9: 4
+    ql: 4
     portSpeed: 25000
+    portFEC: RSFEC
     ethPort: 9
   - ethName: enp103s0f1
-    ql10: 4
+    ql: 4
     portSpeed: 25000
+    portFEC: RSFEC
     ethPort: 10
   - ethName: enp103s0f2
-    ql11: 4
+    ql: 4
     portSpeed: 25000
+    portFEC: RSFEC
     ethPort: 11
   - ethName: enp103s0f3
-    ql12: 4
+    ql: 4
     portSpeed: 25000
-    ethPort: 12    
+    portFEC: RSFEC
+    ethPort: 12
   masterPortMask_GM: 0xfff
   masterPortMask_BC: 0xfff
   slavePortMask_BC: 0xfff
