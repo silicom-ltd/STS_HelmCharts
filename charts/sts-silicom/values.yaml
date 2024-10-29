@@ -9,7 +9,7 @@ ServiceAccount: silicom
 InstallRbac: false
 
 Images:
-  Tsyncd: quay.io/silicom/tsyncd:2.1.4.0
+  Tsyncd: quay.io/silicom/tsyncd:2.1.4.1
   Phc2Sys: quay.io/silicom/phc2sys:3.1-00193-g6bac465
   GrpcTsyncd: quay.io/silicom/grpc-tsyncd:2.1.2.18
   Gpsd: quay.io/silicom/gpsd:3.23.1
