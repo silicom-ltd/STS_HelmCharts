@@ -1,5 +1,5 @@
 
-HELM			?= $(shell pwd)/bin/linux-amd64/helm
+HELM		?= $(shell pwd)/bin/linux-amd64/helm
 PACKAGE_NAME    := sts-silicom
 PACKAGE_VERSION	?= 0.0.14
 CHART_NAME      := sts-test
