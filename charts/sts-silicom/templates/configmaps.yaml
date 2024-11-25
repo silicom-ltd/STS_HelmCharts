@@ -108,7 +108,8 @@ data:
     gnssLockMode = {{.Values.Spec.gnssLockMode}}
     gnssLockTh = {{.Values.Spec.gnssLockTh}}
     gnssClockOutEn = {{.Values.Spec.gnssClockOutEn}}
-
+    gnssDcBlockEn = {{.Values.Spec.gnssDcBlockEn}}
+    
   tsyncd_grpc.json: |
     {
         "Tsynctl":        ":{{.Values.GrpcSvcPort}}",
